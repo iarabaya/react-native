@@ -19,17 +19,30 @@ export const useUsers = () => {
         page: pageRef.current //mando el valor de la referencia
       }
     });
-
+    
     if( response.data.data.length > 0){
       setUsers( response.data.data );
-      pageRef.current ++;
     }else{
+      pageRef.current --;
       alert('There are no more users to show.');
+    }
+  }
+
+  const nextPage = async () => {
+    pageRef.current ++;
+    loadUsers()
+  }
+
+  const previousPage = async() => {
+    if(pageRef.current > 1){
+      pageRef.current --;
+      loadUsers();
     }
   }
 
   return {
     users,
-    loadUsers
+    nextPage,
+    previousPage
   }
 }

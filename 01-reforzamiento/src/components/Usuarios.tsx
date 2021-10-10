@@ -3,7 +3,7 @@ import { User } from "../interfaces/reqRes";
 
 export const Usuarios = () => {
 
-  const { users, loadUsers } = useUsers();
+  const { users, nextPage, previousPage } = useUsers();
 
   const renderItem = ({ id, first_name, last_name, email, avatar }: User) =>{
     return(
@@ -44,7 +44,7 @@ export const Usuarios = () => {
 
       <button
         className="btn btn-primary"
-        onClick={ loadUsers }
+        onClick={ previousPage }
       >
         Previous
       </button>
@@ -53,7 +53,7 @@ export const Usuarios = () => {
 
       <button
         className="btn btn-primary"
-        onClick={ loadUsers }
+        onClick={ nextPage }
       >
         Next
       </button>
