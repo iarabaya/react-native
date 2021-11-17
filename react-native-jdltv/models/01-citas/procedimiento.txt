@@ -1,0 +1,7 @@
+npx react-native init citas // crea el proyecto
+cd citas //entramos al proyecto
+
+npx react-native run-android
+(compila y abre metro)
+
+
