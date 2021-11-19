@@ -20,3 +20,6 @@ https://github.com/mmazzarolo/react-native-modal-datetime-picker
 https://www.npmjs.com/package/react-native-modal-datetime-picker
 
 se debe detener y volver a correr/compilar: npx react-native run-android
+
+--video 57
+npm i shortid o uuid

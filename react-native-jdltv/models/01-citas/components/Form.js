@@ -6,12 +6,13 @@ import {
   View, 
   TextInput,
   Button,
-  TouchableHighlight
+  TouchableHighlight,
+  Alert,
+  ScrollView
  } from 'react-native';
+import shortid from 'shortid';
 
-import React from 'react'
-
-function Form() {
+const Form = ({citas, setCitas, setShowForm}) => {
 
   const [paciente, setPaciente] = useState('');
   const [propietario, setPropietario] = useState('');
@@ -54,12 +55,52 @@ function Form() {
   };
 
   const crearNuevaCita = () =>{
+    //Validate
+    if( paciente.trim() === '' || 
+        propietario.trim() === '' || 
+        telefono.trim() === '' ||
+        fecha.trim() === '' ||
+        hora.trim() === '' ||
+        sintomas.trim() === ''){
+          //falla la validacion
+          showAlert()
+          return;
+        }
 
+    //crear nueva cita
+    const cita = { 
+        paciente, 
+        propietario, 
+        telefono, 
+        fecha, 
+        hora, 
+        sintomas 
+      }
+
+      cita.id = shortid.generate();
+
+      //agregar al state
+      const citasNuevo = [...citas, cita];
+      setCitas(citasNuevo);
+
+      //ocultar formulario
+      setShowForm(false);
+      
+      //resetear el formulario
+  }
+
+  //muestra alerta si falla la validacion
+  const showAlert = () =>{
+    Alert.alert(
+      'Error', //titulo
+      'Todos los campos son obligatorios', //mensaje
+      [{ text: 'OK' }] //arr de botones
+    )
   }
 
   return (
     <>
-      <View style={styles.form}>
+      <ScrollView style={styles.form}>
         <View>
           <Text style={styles.label}>Paciente:</Text>
           <TextInput
@@ -123,7 +164,7 @@ function Form() {
           <Text style={styles.txtEliminar}> Crear nueva cita </Text>
         </TouchableHighlight>
       </View>
-      </View>
+      </ScrollView>
     </>
   )
 }
