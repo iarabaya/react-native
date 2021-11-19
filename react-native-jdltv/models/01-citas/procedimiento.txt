@@ -6,4 +6,17 @@ npx react-native run-android
 
 
 para ver la consola hay que presionar
-Control + D, tocar la opcion Debug
+Control + D o + M, tocar la opcion Debug
+
+--video 48
+"Instalando una dependencia para la fecha"
+
+react-native-modal-datetime-picker
+
+npm i react-native-modal-datetime-picker @react-native-community/datetimepicker
+
+https://github.com/mmazzarolo/react-native-modal-datetime-picker
+
+https://www.npmjs.com/package/react-native-modal-datetime-picker
+
+se debe detener y volver a correr/compilar: npx react-native run-android

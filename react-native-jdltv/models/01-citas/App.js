@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Text, StyleSheet, View, FlatList } from 'react-native';
 import Cita from './components/Cita';
+import Form from './components/Form';
+
 const App = () => {
 
   const [ citas, setCitas] = useState([
@@ -21,6 +23,8 @@ const App = () => {
   <View style={styles.contenedor}>
     <Text style={styles.titulo}>Administraor de Citas</Text>
 
+    <Form/>
+    
     <Text style={styles.titulo}>{ citas.length > 0?'Administra tus citas': 'No hay citas, agrega una' }</Text>
     <FlatList
       data={citas}
