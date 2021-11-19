@@ -5,3 +5,5 @@ npx react-native run-android
 (compila y abre metro)
 
 
+para ver la consola hay que presionar
+Control + D, tocar la opcion Debug
