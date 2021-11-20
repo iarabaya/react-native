@@ -1,0 +1,13 @@
+npx react-native run-android
+
+--video 73
+//si hay error de enlace con la fuente de assets
+npx react-native link
+
+--video 77
+instalando el picker de react-native-community
+
+npm install @react-native-community/picker --save
+
+--video 79
+npm i --save axios
