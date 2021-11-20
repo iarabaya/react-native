@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TouchableHighlight, Alert } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import axios from 'axios';
 
-const Form = () => {
-  const [ moneda, setMoneda ] = useState('');
-  const [ criptomoneda, setCriptomoneda ] = useState('');
+const Form = ({moneda, criptomoneda, setMoneda, setCriptomoneda, setConsultarAPI}) => {
   const [ criptomonedas, setCriptomonedas ] = useState([]);
 
   useEffect(() => {
@@ -16,6 +14,7 @@ const Form = () => {
       console.log(result);
       setCriptomonedas(result.data.Data);
     }
+    apiRequest();
   }, []);
 
   //Almacena las selecciones del usuario
@@ -27,6 +26,26 @@ const Form = () => {
   const getCryptoCoin = cripto => {
     // console.log(cripto);
     setCriptomoneda(cripto);
+  }
+
+  const cotizarPrecio = () =>{
+    if(moneda.trim() === '' || criptomoneda.trim() === ''){
+      showAlert();
+      return;
+    }
+    //pasa la validacion, cambiar state de consulta
+    setConsultarAPI(true);
+    
+  }
+
+  const showAlert = () =>{
+    Alert.alert(
+      'Error...',
+      'Ambos campos son obligatorios',
+      [
+        {text:'OK'}
+      ]
+    )
   }
 
   return (
@@ -56,6 +75,13 @@ const Form = () => {
           return <Picker.Item key={cripto.CoinInfo.Id} label={cripto.CoinInfo.FullName} value={cripto.CoinInfo.Name}/>
         })}
         </Picker>
+
+          <TouchableHighlight
+            style={styles.btnCotizar}
+            onPress={()=> cotizarPrecio()}
+          >
+            <Text style={styles.textCotizar}>Cotizar</Text>
+          </TouchableHighlight>
     </View>
   );
 };
@@ -66,6 +92,18 @@ const styles = StyleSheet.create({
     fontSize: 22,
     marginVertical: 20,
     textTransform: 'uppercase'
+  },
+  btnCotizar:{
+    backgroundColor:'#5E49E2',
+    padding:10,
+    marginTop:20
+  },
+  textCotizar:{
+    color:'#FFF',
+    fontSize:18,
+    fontFamily: 'Lato-Black',
+    textTransform: 'uppercase',
+    textAlign: 'center'
   }
 })
 
